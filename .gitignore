@@ -1,0 +1,14 @@
+author.tex
+date.tex
+
+*.aux
+*.log
+*.gz
+*.toc
+*.pdf
+*.fdb_latexmk
+*.out
+*.fls
+*.acn
+*.glo
+*.ist

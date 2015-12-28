@@ -1,0 +1,42 @@
+\documentclass[12pt]{report}
+
+\usepackage{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[toc]{glossaries}
+\usepackage[margin=1in]{geometry}
+
+% Start new page after section
+\newcommand{\sectionbreak}{\clearpage}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{}{0pt}{\Huge}
+\titlespacing*{\chapter}
+  {0pt}{10pt}{40pt}
+
+\title{
+	{Netværkseksamen}\\
+}
+
+\author{
+\input{author}
+}
+
+\renewcommand{\contentsname}{Indholdsfortegnelse}
+
+\date{
+\input{date}
+}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\chapter{Networks: Protocols, Layers}
+\input{1-networks/main}
+
+\end{document}
