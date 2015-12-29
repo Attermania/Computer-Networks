@@ -1,0 +1,86 @@
+\section{Introduktion}
+\begin{itemize}
+	\item Kommunikation mellem processor på 2 seperate end systems
+	\item Klient
+	\item Server
+	\item En process kan være både klient og server (ex. P2P)
+\end{itemize}
+
+\section{Arkitekturer i netværksapplikationer}
+\begin{itemize}
+	\item Klient-server arkitektur
+	\item Peer-to-peer (P2P) arkitektur
+\end{itemize}
+
+\section{Protokoller}
+\begin{itemize}
+	\item Headers \& data
+	\item Status koder
+\end{itemize}
+
+\subsection{HTTP}
+\begin{itemize}
+	\item Hypertext Transfer Protocol
+	\item Klient ofte en browser
+	\item Server er en webserver, ex. Apache
+	\item HTML, billeder, video, XML, JSON osv.
+	\item Stateless
+	\item Cookies
+	\item TCP
+\end{itemize}
+
+{\includegraphics[scale=0.5]{2-application-layer/http-client-server.png}
+
+\textbf{Request}
+GET /somedir/page.html HTTP/1.1 \\
+Host: www.someschool.edu \\
+Connection: close \\
+User-agent: Mozilla/5.0 \\
+Accept-language: fr \\
+
+\textbf{Response}
+HTTP/1.0 200 OK \\
+Date: Fri, 31 Dec 1999 23:59:59 GMT \\
+Content-Type: text/html \\
+Content-Length: 1354
+
+\textless html\textgreater \\
+\textless body\textgreater \\
+\textless h1\textgreater Hello world!\textless /h1\textgreater \\
+… \\
+\textless /body\textgreater \\
+\textless /html\textgreater \\
+
+\subsection{FTP}
+\begin{itemize}
+	\item File Transfer Protocol
+	\item Port 20 \& 21
+	\item Serveren hoster filer
+	\item Klienten kan henter filer mm., fra serveren
+	\item Kræver ofte verificering med brugernavn og adgangskode
+	\item Stateful
+\end{itemize}
+
+{\includegraphics[scale=0.5]{2-application-layer/ftp-client-server.png}
+
+\subsection{SMTP, POP3, IMAP}
+\begin{itemize}
+	\item Simple Mail Transfer Protocol, Post Office Protocol - Version 3, Internet Message Access Protocol
+	\item SMTP sender mail
+	\item POP3 \& IMAP tilgår mail
+\end{itemize}
+
+\subsection{DNS}
+\begin{itemize}
+	\item Ofte brugt af andre protokoller i Application-laget (HTTP, SMTP, FTP osv.)
+	\item Domain Name System
+	\item Distribueret (Decentralized)
+	\item Mapper domænenavne til ip-adresser
+\end{itemize}
+
+\section{Sockets}
+\begin{itemize}
+	\item Kommunikation mellem appliktionslaget og transportlaget
+	\item UDP
+	\item TCP
+\end{itemize}
