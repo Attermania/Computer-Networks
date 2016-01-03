@@ -101,10 +101,73 @@ En router er en enhed på et computernetværk som forbinder et antal logiske ell
 \end{itemize}
 
 \section{Internetprotokollen – IP}
-En router er en enhed på et computernetværk som forbinder et antal logiske eller fysiske netværk ved at videresende pakker fra et netværk til deres destination på et andet netværk i en process kaldet routing. Routeren arbejder på OSI-modellens lag 3 (netværkslaget), i internetprotokollen kaldes dette lag IP-laget.
+Den protokol der bruges på internettets netværkslag er IP protokollen. 
+Derfor kaldes internettets netværkslag også for IP-laget. Internetprotokollen er imidlertid bare en del af internettets netværkslag, der består af 3 hovedkomponenter.
 \begin{itemize}
-	\item autonome systemer(AS)
-	\item klassificeret i regioner(reducere hukommelses krav)
-	\item intraautonom system routing protokol
-	\item hot-potato routing(hurtigt og lave omkostninger - pakke => gatewayrouter)
+	\item Internet Protocol(adressering - felter i datagrammet - IPv4 - IPv6)
+	\item Stibestemmelse(beregne pakke sti - vedligeholdelse af netværket)
+	\item Fejlrapportering(rapportere  fejl i datagrammet - ICMP
+\end{itemize}
+
+\section{IPv4 adressering}
+\begin{itemize}
+	\item interface
+	\item IP -> interfacet
+	\item IP addresse 32 bits, dotted decimal format
+	\item Netværksprefikset
+	\item Værtsdel
+	\item Netværksmasken
+	\item 5 netklasser(specifikt adresseområde - variable felter)
+	\item Subnet mask(host og net delen)
+\end{itemize}
+
+\section{Tildeling af IP adresser}
+\begin{itemize}
+	\item Manuel konfiguration
+	\item Dynamic Host Configuration Protocol – DHCP(plug-and-play protokol - flere brugere - færre ip adresser - let at administrerer - adressekonflikt)
+\end{itemize}
+
+\section{Ipv4 datagram}
+\begin{itemize}
+	\item Versionsnummeret - 4 bit
+	\item Headerlængde - 4 bit
+	\item Servicetype (Type Of Service – TOS)
+	\item Datagrammets længde
+	\item Identifikation, flag og start på opdeling
+	\item Time-to-live (TTL)
+	\item Protokol i højere lag
+	\item Headerens kontrolsum
+	\item Afsender og modtageradresse
+	\item Indstillinger
+	\item Data
+	\item Fragmentering af IP datagrammer(MTU Max Transfer Unit - 1500 ethernet, 576 WAN - identification flag - fragmentation offset fields - fragmentering  linklaget - leveres til transportlaget) 
+\end{itemize}
+
+\section{ICMP – Internet Control Message Protocol}
+\begin{itemize}
+	\item værter, routere og gateways
+	\item Fejlmeddelelser (Network unreachable f.eks. ftp, http og telnet session)
+	\item Fragtes i IP datagrammer
+	\item IP Datagram med ICMP videresendes ICMP
+	\item Type
+	\item Kode
+	\item 8 bytes af IP datagrammet som foreårsagede fejlen
+	\item eks. Ping
+	\item eks. Traceroute
+\end{itemize}
+
+\section{Network Address Translators - NAT}
+NAT oversætter IP pakkerne således at de på ydersiden ser ud til at have en anden afsenderadresse (eller source/destination port) end maskinen, de oprindeligt kommer fra.
+\begin{itemize}
+	\item fremstå som 1 IP adresse
+	\item se eksempel
+	\item UPnP - Universal Plug and Play (simplificere hjemmenetværk - TCP/IP-protokollen)
+\end{itemize}
+
+\section{Routingprotokoller (Ikke en del af pensum)}
+NAT oversætter IP pakkerne således at de på ydersiden ser ud til at have en anden afsenderadresse (eller source/destination port) end maskinen, de oprindeligt kommer fra.
+\begin{itemize}
+	\item RIP - Routing Information Protocol
+	\item OSPF - Open Shortest Path First
+	\item BGP - Border Gateway Protocol 
 \end{itemize}
