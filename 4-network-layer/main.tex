@@ -1,0 +1,110 @@
+Netværkslaget har ansvaret for at rute diagrammer fra en vært til en anden
+
+\section{Introduktion}
+\begin{itemize}
+	\item host-to-host kommmunikation
+	\item forbindelsesorienteret (eks. telefonsamtale) - pålidelig
+	\item forbindelsesløs - upålidelig
+	\item videresendelse
+	\item stibestemmelse
+	\item connection setup
+\end{itemize}
+
+\section{Netværk service modeller}
+\begin{itemize}
+	\item guaranteed delivery
+	\item guaranteed delivery with bounded delay
+	\item Internettet
+	\item Constant bitrate (CBR)
+	\item Available Bit Rate (ABR)
+\end{itemize}
+
+\section{Pakkekoblede netværk}
+\begin{itemize}
+	\item datagramnetværk 
+	\item virtuelle kredsløbs koblede netværk
+	\item Internettet
+	\item Constant bitrate (CBR)
+	\item Available Bit Rate (ABR)
+\end{itemize}
+
+\subsection{Virtuelle kredsløbs koblede netværk}
+\begin{itemize}
+	\item rute 
+	\item VC nummer
+	\item videresendelsestabel
+	\item 3 faser - VC setup - Data transfer - VC teardown
+	\item opbevarer oplysninger om forbindelsesstatus
+	\item videresendes ud fra den forbindelsen pakken tilhører
+\end{itemize}
+
+\subsection{Datagramnetværk}
+\begin{itemize}
+	\item kun kendt for de to slutsystemer
+	\item header (hierarkisk sturktur) 
+	\item videresendelsestabel
+	\item eks. med postvæsenet
+	\item ikke garanti for rigtig rækkefølge
+	\item opbevarer INGEN oplysninger om forbindelsesstatus
+	\item videresendes ud fra modtageradressen
+\end{itemize}
+
+\section{Routingprincipper}
+Bestemmelsen af routen er en opgave der tilhører routingprotokollen, eller nærmere bestemt den routingalgoritme der er en del af routingprotokollen.
+\begin{itemize}
+	\item transportere datagrammer
+	\item bestemmelse af route (routingprotokollen)
+	\item Global routingalgoritme – Link state algoritmer
+	\item Decentral routingalgoritme – Distance vektor algoritmer
+\end{itemize}
+
+\subsection{Global routingalgoritme – Link state algoritmer}
+\begin{itemize}
+	\item Den billigste sti mellem afsender og modtager
+	\item global
+	\item broadcast
+	\item routing tabel
+	\item dynamisk
+\end{itemize}
+
+\subsection{Decentral routingalgoritme – Distance vektor algoritmer}
+\begin{itemize}
+	\item Den hurtigste sti fra afsender til modtager
+	\item iterativ og distribueret
+	\item ingen kendskab til omkostningerne i netværket
+	\item naboer
+	\item kender ikke den komplette sti
+	\item statisk
+	\item asynkron
+	\item distancetabel
+\end{itemize}
+
+\section{Sådan virker en router}
+En router er en enhed på et computernetværk som forbinder et antal logiske eller fysiske netværk ved at videresende pakker fra et netværk til deres destination på et andet netværk i en process kaldet routing. Routeren arbejder på OSI-modellens lag 3 (netværkslaget), i internetprotokollen kaldes dette lag IP-laget.
+\begin{itemize}
+	\item input ports
+	\item switching fabric
+	\item output ports
+	\item routing processor
+	\item packet scheduler(opfyldelsesgaranti, isolere 'flows' fra hinanden)
+	\item packet scheduler algoritmer(FCFS - WFQ - RR)
+	\item QoS
+\end{itemize}
+
+\section{Hierarkisk routning}
+En router er en enhed på et computernetværk som forbinder et antal logiske eller fysiske netværk ved at videresende pakker fra et netværk til deres destination på et andet netværk i en process kaldet routing. Routeren arbejder på OSI-modellens lag 3 (netværkslaget), i internetprotokollen kaldes dette lag IP-laget.
+\begin{itemize}
+	\item autonome systemer(AS)
+	\item klassificeret i regioner(reducere hukommelses krav)
+	\item intraautonom system routing protokol
+	\item hot-potato routing(hurtigt og lave omkostninger - pakke => gatewayrouter)
+\end{itemize}
+
+\section{Internetprotokollen – IP}
+En router er en enhed på et computernetværk som forbinder et antal logiske eller fysiske netværk ved at videresende pakker fra et netværk til deres destination på et andet netværk i en process kaldet routing. Routeren arbejder på OSI-modellens lag 3 (netværkslaget), i internetprotokollen kaldes dette lag IP-laget.
+\begin{itemize}
+	\item autonome systemer(AS)
+	\item klassificeret i regioner(reducere hukommelses krav)
+	\item intraautonom system routing protokol
+	\item hot-potato routing(hurtigt og lave omkostninger - pakke => gatewayrouter)
+\end{itemize}
