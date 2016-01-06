@@ -1,6 +1,8 @@
-Netværkslaget har ansvaret for at rute diagrammer fra en vært til en anden
-
 \section{Introduktion}
+Netværklaget omhandler en host-to-host kommunikation service dvs. dens opgave består i at sende pakker fra en ‘sending host’ til en ‘receiving host’.
+\begin{center}
+  \includegraphics{4-network-layer/networklayer.png}
+\end{center}
 \begin{itemize}
 	\item host-to-host kommmunikation
 	\item forbindelsesorienteret (eks. telefonsamtale) - pålidelig
@@ -29,6 +31,7 @@ Netværkslaget har ansvaret for at rute diagrammer fra en vært til en anden
 \end{itemize}
 
 \subsection{Virtuelle kredsløbs koblede netværk}
+{\includegraphics{4-network-layer/vc-network.png}
 \begin{itemize}
 	\item rute 
 	\item VC nummer
@@ -37,8 +40,10 @@ Netværkslaget har ansvaret for at rute diagrammer fra en vært til en anden
 	\item opbevarer oplysninger om forbindelsesstatus
 	\item videresendes ud fra den forbindelsen pakken tilhører
 \end{itemize}
+{\includegraphics{4-network-layer/vc-network-3faser.png}
 
 \subsection{Datagramnetværk}
+{\includegraphics{4-network-layer/datagramnetwork.png}
 \begin{itemize}
 	\item kun kendt for de to slutsystemer
 	\item header (hierarkisk sturktur) 
@@ -78,9 +83,16 @@ Bestemmelsen af routen er en opgave der tilhører routingprotokollen, eller nær
 	\item asynkron
 	\item distancetabel
 \end{itemize}
+\begin{center}
+  \includegraphics[scale=0.8]{4-network-layer/sammenligning-link-state-distance-vektor.png}
+\end{center}
+
 
 \section{Sådan virker en router}
 En router er en enhed på et computernetværk som forbinder et antal logiske eller fysiske netværk ved at videresende pakker fra et netværk til deres destination på et andet netværk i en process kaldet routing. Routeren arbejder på OSI-modellens lag 3 (netværkslaget), i internetprotokollen kaldes dette lag IP-laget.
+\begin{center}
+  \includegraphics[scale=0.8]{4-network-layer/whats-inside-a-router.png}
+\end{center}
 \begin{itemize}
 	\item input ports
 	\item switching fabric
@@ -90,9 +102,14 @@ En router er en enhed på et computernetværk som forbinder et antal logiske ell
 	\item packet scheduler algoritmer(FCFS - WFQ - RR)
 	\item QoS
 \end{itemize}
+{\includegraphics{4-network-layer/router-input-port}
+{\includegraphics{4-network-layer/router-output-port.png}
 
 \section{Hierarkisk routning}
 En router er en enhed på et computernetværk som forbinder et antal logiske eller fysiske netværk ved at videresende pakker fra et netværk til deres destination på et andet netværk i en process kaldet routing. Routeren arbejder på OSI-modellens lag 3 (netværkslaget), i internetprotokollen kaldes dette lag IP-laget.
+\begin{center}
+  \includegraphics[scale=0.8]{4-network-layer/hierarkisk-routing.png}
+\end{center}
 \begin{itemize}
 	\item autonome systemer(AS)
 	\item klassificeret i regioner(reducere hukommelses krav)
@@ -103,6 +120,9 @@ En router er en enhed på et computernetværk som forbinder et antal logiske ell
 \section{Internetprotokollen – IP}
 Den protokol der bruges på internettets netværkslag er IP protokollen. 
 Derfor kaldes internettets netværkslag også for IP-laget. Internetprotokollen er imidlertid bare en del af internettets netværkslag, der består af 3 hovedkomponenter.
+\begin{center}
+  \includegraphics{4-network-layer/networklayer.png}
+\end{center}
 \begin{itemize}
 	\item Internet Protocol(adressering - felter i datagrammet - IPv4 - IPv6)
 	\item Stibestemmelse(beregne pakke sti - vedligeholdelse af netværket)
@@ -110,9 +130,13 @@ Derfor kaldes internettets netværkslag også for IP-laget. Internetprotokollen 
 \end{itemize}
 
 \section{IPv4 adressering}
+En vært er sædvanligvis koblet til netværket med én forbindelse. Grænsen mellem værten og det fysiske netværk kaldes en interface.
+\begin{center}
+  \includegraphics{4-network-layer/ipv4-adressering.png}
+\end{center}
 \begin{itemize}
-	\item interface
-	\item IP -> interfacet
+	\item Interface
+	\item IP adressen knyttet til interfacet
 	\item IP addresse 32 bits, dotted decimal format
 	\item Netværksprefikset
 	\item Værtsdel
@@ -120,6 +144,11 @@ Derfor kaldes internettets netværkslag også for IP-laget. Internetprotokollen 
 	\item 5 netklasser(specifikt adresseområde - variable felter)
 	\item Subnet mask(host og net delen)
 \end{itemize}
+{\includegraphics{4-network-layer/netklasser.png}
+\begin{center}
+  \includegraphics{4-network-layer/klasseforskel.png}
+\end{center}
+{\includegraphics{4-network-layer/masker.png}
 
 \section{Tildeling af IP adresser}
 \begin{itemize}
@@ -128,6 +157,7 @@ Derfor kaldes internettets netværkslag også for IP-laget. Internetprotokollen 
 \end{itemize}
 
 \section{Ipv4 datagram}
+{\includegraphics{4-network-layer/IPv4_datagram.png}
 \begin{itemize}
 	\item Versionsnummeret - 4 bit
 	\item Headerlængde - 4 bit
@@ -144,6 +174,9 @@ Derfor kaldes internettets netværkslag også for IP-laget. Internetprotokollen 
 \end{itemize}
 
 \section{ICMP – Internet Control Message Protocol}
+\begin{center}
+  \includegraphics[scale=0.7]{4-network-layer/ICMP-Header.png}
+\end{center}
 \begin{itemize}
 	\item værter, routere og gateways
 	\item Fejlmeddelelser (Network unreachable f.eks. ftp, http og telnet session)
@@ -155,9 +188,11 @@ Derfor kaldes internettets netværkslag også for IP-laget. Internetprotokollen 
 	\item eks. Ping
 	\item eks. Traceroute
 \end{itemize}
+{\includegraphics{4-network-layer/icmp-tabel.png}
 
 \section{Network Address Translators - NAT}
 NAT oversætter IP pakkerne således at de på ydersiden ser ud til at have en anden afsenderadresse (eller source/destination port) end maskinen, de oprindeligt kommer fra.
+{\includegraphics{4-network-layer/nat.png}
 \begin{itemize}
 	\item fremstå som 1 IP adresse
 	\item se eksempel
