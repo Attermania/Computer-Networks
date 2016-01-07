@@ -4,89 +4,58 @@ Netværklaget omhandler en host-to-host kommunikation service dvs. dens opgave b
   \includegraphics{4-network-layer/networklayer.png}
 \end{center}
 \begin{itemize}
-	\item host-to-host kommmunikation
-	\item forbindelsesorienteret (eks. telefonsamtale) - pålidelig
-	\item forbindelsesløs - upålidelig
-	\item videresendelse
-	\item stibestemmelse
-	\item connection setup
+	\item Står for addressering
+	\item Leverer pakker til applikationer.
+	\item Routing
+	\item Forwarding 
+	\item Modtager segmenter fra transportlag -> indkapsler dette i datagram (+IP) -> Videre til routeren.
 \end{itemize}
 
-\section{Netværk service modeller}
+\includegraphics{4-network-layer/RoutingForwardring.png}
+
+\subsection{Forwarding}
 \begin{itemize}
-	\item guaranteed delivery
-	\item guaranteed delivery with bounded delay
-	\item Internettet
-	\item Constant bitrate (CBR)
-	\item Available Bit Rate (ABR)
+\item Ankommen pakke i router skal flyttes til udgående link (Videre på netværk/Tilkoblet klient på router)
+\item Forwardring tabel
+\item Analyserer bestemt field (header).
+\item Bruges til at indeksere i forwarding tabel.
 \end{itemize}
 
-\section{Pakkekoblede netværk}
+\subsection{Routing}
 \begin{itemize}
-	\item datagramnetværk 
-	\item virtuelle kredsløbs koblede netværk
-	\item Internettet
-	\item Constant bitrate (CBR)
-	\item Available Bit Rate (ABR)
+\item Finde vej ved hjælp af routing protokoller.
+\item Stibestemmelse
+\item Routing Algoritmer
 \end{itemize}
 
-\subsection{Virtuelle kredsløbs koblede netværk}
+\section{Services på netværkslaget}
+\begin{itemize}
+\item Guaranteed delivery (Garanti for pakkes ankomst ved destination) + bounded delay.
+\item In-order-packet-delivery (Ankommer i rækkefølgen de blev sendt).
+\item Security Services (Kryptering af datagrammer)
+\item Osv.
+\end{itemize}
+
+\section{Virtuelle kredsløb og datagramnetværk}
+\subsection{Virtuelle kredsløb}
 {\includegraphics{4-network-layer/vc-network.png}
 \begin{itemize}
-	\item rute 
-	\item VC nummer
-	\item videresendelsestabel
-	\item 3 faser - VC setup - Data transfer - VC teardown
-	\item opbevarer oplysninger om forbindelsesstatus
-	\item videresendes ud fra den forbindelsen pakken tilhører
+	\item 1) Rute (En række routere og links). 
+	\item 2) VC-nummer (Ét nummer for hver link langs en rute)
+	\item 3) Indgange i FW-table i hver router land en Route
+	\item Videresendelsestabel
+	\item Opbevarer oplysninger om forbindelsesstatus.
 \end{itemize}
-{\includegraphics{4-network-layer/vc-network-3faser.png}
 
 \subsection{Datagramnetværk}
 {\includegraphics{4-network-layer/datagramnetwork.png}
 \begin{itemize}
-	\item kun kendt for de to slutsystemer
-	\item header (hierarkisk sturktur) 
-	\item videresendelsestabel
-	\item eks. med postvæsenet
-	\item ikke garanti for rigtig rækkefølge
-	\item opbevarer INGEN oplysninger om forbindelsesstatus
-	\item videresendes ud fra modtageradressen
+	\item For hver packetforsendelse - destinations adresse tilføjes og afsendes.
+	\item Packet bevæger sig igennem routere mod distination.
+	\item Routerne benytter destinationsadressen til at forward. 
+	\item Opbevarer INGEN oplysninger om forbindelsesstatus
+	\item 32 bit destinationsadresse (IP-Datagram).
 \end{itemize}
-
-\section{Routingprincipper}
-Bestemmelsen af routen er en opgave der tilhører routingprotokollen, eller nærmere bestemt den routingalgoritme der er en del af routingprotokollen.
-\begin{itemize}
-	\item transportere datagrammer
-	\item bestemmelse af route (routingprotokollen)
-	\item Global routingalgoritme – Link state algoritmer
-	\item Decentral routingalgoritme – Distance vektor algoritmer
-\end{itemize}
-
-\subsection{Global routingalgoritme – Link state algoritmer}
-\begin{itemize}
-	\item Den billigste sti mellem afsender og modtager
-	\item global
-	\item broadcast
-	\item routing tabel
-	\item dynamisk
-\end{itemize}
-
-\subsection{Decentral routingalgoritme – Distance vektor algoritmer}
-\begin{itemize}
-	\item Den hurtigste sti fra afsender til modtager
-	\item iterativ og distribueret
-	\item ingen kendskab til omkostningerne i netværket
-	\item naboer
-	\item kender ikke den komplette sti
-	\item statisk
-	\item asynkron
-	\item distancetabel
-\end{itemize}
-\begin{center}
-  \includegraphics[scale=0.8]{4-network-layer/sammenligning-link-state-distance-vektor.png}
-\end{center}
-
 
 \section{Sådan virker en router}
 En router er en enhed på et computernetværk som forbinder et antal logiske eller fysiske netværk ved at videresende pakker fra et netværk til deres destination på et andet netværk i en process kaldet routing. Routeren arbejder på OSI-modellens lag 3 (netværkslaget), i internetprotokollen kaldes dette lag IP-laget.
@@ -94,28 +63,15 @@ En router er en enhed på et computernetværk som forbinder et antal logiske ell
   \includegraphics[scale=0.8]{4-network-layer/whats-inside-a-router.png}
 \end{center}
 \begin{itemize}
-	\item input ports
-	\item switching fabric
-	\item output ports
-	\item routing processor
-	\item packet scheduler(opfyldelsesgaranti, isolere 'flows' fra hinanden)
-	\item packet scheduler algoritmer(FCFS - WFQ - RR)
-	\item QoS
+	\item Input porte (lookup function - skal en packet sendes igennem denne?)
+	\item Switching fabric (Forbinder input/ output porte)
+	\item Output porte (Herfra sendes packets - Bidirectional) 
+	\item Routing processor (Routing protokoller / states på links)
 \end{itemize}
+
+
 {\includegraphics{4-network-layer/router-input-port}
 {\includegraphics{4-network-layer/router-output-port.png}
-
-\section{Hierarkisk routning}
-En router er en enhed på et computernetværk som forbinder et antal logiske eller fysiske netværk ved at videresende pakker fra et netværk til deres destination på et andet netværk i en process kaldet routing. Routeren arbejder på OSI-modellens lag 3 (netværkslaget), i internetprotokollen kaldes dette lag IP-laget.
-\begin{center}
-  \includegraphics[scale=0.8]{4-network-layer/hierarkisk-routing.png}
-\end{center}
-\begin{itemize}
-	\item autonome systemer(AS)
-	\item klassificeret i regioner(reducere hukommelses krav)
-	\item intraautonom system routing protokol
-	\item hot-potato routing(hurtigt og lave omkostninger - pakke => gatewayrouter)
-\end{itemize}
 
 \section{Internetprotokollen – IP}
 Den protokol der bruges på internettets netværkslag er IP protokollen. 
@@ -125,8 +81,24 @@ Derfor kaldes internettets netværkslag også for IP-laget. Internetprotokollen 
 \end{center}
 \begin{itemize}
 	\item Internet Protocol(adressering - felter i datagrammet - IPv4 - IPv6)
-	\item Stibestemmelse(beregne pakke sti - vedligeholdelse af netværket)
+	\item Stibestemmelse(beregne pakkes sti - vedligeholdelse af netværket)
 	\item Fejlrapportering(rapportere  fejl i datagrammet - ICMP
+\end{itemize}
+
+\section{Ipv4 datagram}
+{\includegraphics{4-network-layer/IPv4_datagram.png}
+\begin{itemize}
+	\item Version: (IPv4 / IPv6)
+	\item Header length: (Hvor starter dataen?)
+	\item Servicetype: (IP-datagram type: Realtime / non-realtime.)
+	\item Datagram-length: Datagrammets længde (Header + data)
+	\item Identifikation, flag og start på opdeling.
+	\item Time-to-live: (Sørger for at datagram ikke lever for evig - counter dekrementeres).
+	\item Protokol: TCP eller UDP på transportlag.
+	\item Header checksum: Udregnes fra summen af bytes - kontrolleres af modtager.
+	\item Source/destination IP address: Afsender og modtageradresse (IP)
+	\item Settings: Mulighed for udvidelse af IP header.
+	\item Data: Transportlag segmentet (Reel data).
 \end{itemize}
 
 \section{IPv4 adressering}
@@ -135,20 +107,27 @@ En vært er sædvanligvis koblet til netværket med én forbindelse. Grænsen me
   \includegraphics{4-network-layer/ipv4-adressering.png}
 \end{center}
 \begin{itemize}
-	\item Interface
+	\item Interface (Router har et interface for hvert link.)
+ 	\item Hvert host og router interface har en IP tilknyttet.
 	\item IP adressen knyttet til interfacet
 	\item IP addresse 32 bits, dotted decimal format
-	\item Netværksprefikset
-	\item Værtsdel
-	\item Netværksmasken
-	\item 5 netklasser(specifikt adresseområde - variable felter)
-	\item Subnet mask(host og net delen)
+	\item Flere host interfaces på ét router interface = subnet.
+	\item 223.1.1.0/24 - /24 notation = subnet mask.
 \end{itemize}
-{\includegraphics{4-network-layer/netklasser.png}
+
+  \includegraphics{4-network-layer/ivpsubnet.png}
+
+\section{Hierarkisk routing}
+En router er en enhed på et computernetværk som forbinder et antal logiske eller fysiske netværk ved at videresende pakker fra et netværk til deres destination på et andet netværk i en process kaldet routing. Routeren arbejder på OSI-modellens lag 3 (netværkslaget), i internetprotokollen kaldes dette lag IP-laget.
 \begin{center}
-  \includegraphics{4-network-layer/klasseforskel.png}
+  \includegraphics[scale=0.8]{4-network-layer/hierarkisk-routing.png}
 \end{center}
-{\includegraphics{4-network-layer/masker.png}
+\begin{itemize}
+	\item Metode til at route i netværk.
+	\item Baseret på hierarkisk adressering.
+	\item Arrangering af routere i et hierarki. 
+\end{itemize}
+
 
 \section{Tildeling af IP adresser}
 \begin{itemize}
@@ -156,53 +135,16 @@ En vært er sædvanligvis koblet til netværket med én forbindelse. Grænsen me
 	\item Dynamic Host Configuration Protocol – DHCP(plug-and-play protokol - flere brugere - færre ip adresser - let at administrerer - adressekonflikt)
 \end{itemize}
 
-\section{Ipv4 datagram}
-{\includegraphics{4-network-layer/IPv4_datagram.png}
-\begin{itemize}
-	\item Versionsnummeret - 4 bit
-	\item Headerlængde - 4 bit
-	\item Servicetype (Type Of Service – TOS)
-	\item Datagrammets længde
-	\item Identifikation, flag og start på opdeling
-	\item Time-to-live (TTL)
-	\item Protokol i højere lag
-	\item Headerens kontrolsum
-	\item Afsender og modtageradresse
-	\item Indstillinger
-	\item Data
-	\item Fragmentering af IP datagrammer(MTU Max Transfer Unit - 1500 ethernet, 576 WAN - identification flag - fragmentation offset fields - fragmentering  linklaget - leveres til transportlaget) 
-\end{itemize}
 
 \section{ICMP – Internet Control Message Protocol}
-\begin{center}
-  \includegraphics[scale=0.7]{4-network-layer/ICMP-Header.png}
-\end{center}
 \begin{itemize}
-	\item værter, routere og gateways
-	\item Fejlmeddelelser (Network unreachable f.eks. ftp, http og telnet session)
-	\item Fragtes i IP datagrammer
-	\item IP Datagram med ICMP videresendes ICMP
-	\item Type
-	\item Kode
-	\item 8 bytes af IP datagrammet som foreårsagede fejlen
-	\item eks. Ping
-	\item eks. Traceroute
+	\item Error reporting
+	\item Hvis "Destination network unreachable" fejl modtages = IMCP.
+	\item Sti til host kunne ikke findes.
+	\item Betragtes som en del af IP - men befinder sig lige over IP.
+	\item ICMP beskeder sender i IP datagrammer.
+	\item ICMP = IP Payload, ligesom UDP og TCP segmenter.
+
 \end{itemize}
 {\includegraphics{4-network-layer/icmp-tabel.png}
 
-\section{Network Address Translators - NAT}
-NAT oversætter IP pakkerne således at de på ydersiden ser ud til at have en anden afsenderadresse (eller source/destination port) end maskinen, de oprindeligt kommer fra.
-{\includegraphics{4-network-layer/nat.png}
-\begin{itemize}
-	\item fremstå som 1 IP adresse
-	\item se eksempel
-	\item UPnP - Universal Plug and Play (simplificere hjemmenetværk - TCP/IP-protokollen)
-\end{itemize}
-
-\section{Routingprotokoller (Ikke en del af pensum)}
-NAT oversætter IP pakkerne således at de på ydersiden ser ud til at have en anden afsenderadresse (eller source/destination port) end maskinen, de oprindeligt kommer fra.
-\begin{itemize}
-	\item RIP - Routing Information Protocol
-	\item OSPF - Open Shortest Path First
-	\item BGP - Border Gateway Protocol 
-\end{itemize}
